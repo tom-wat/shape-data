@@ -200,8 +200,9 @@ function getPoints() {
   const pointElements = document.querySelectorAll("#point > ul");
   if (!pointElements.length) return;
   const points = {};
-  const point = {};
+  // const point = {};
   for (let i = 0; i < pointElements.length; i++) {
+    let point = {};
     const pointInputElements = document.querySelectorAll(
       `#point-${i + 1} input[id]`
     );
@@ -211,6 +212,10 @@ function getPoints() {
       const label = input.closest("li").querySelector("label");
       const labelValue = label.textContent.replace(":", "").trim();
       const inputValue = input.value;
+      console.log(input);
+      console.log(label);
+      console.log(labelValue);
+      console.log(inputValue);
 
       if (!inputValue) {
         continue;
@@ -238,8 +243,8 @@ function getArcs() {
   const arcElements = document.querySelectorAll("#arc > ul");
   if (!arcElements.length) return;
   const arcs = {};
-  const arc = {};
   for (let i = 0; i < arcElements.length; i++) {
+    let arc = {};
     const arcInputElements = document.querySelectorAll(
       `#arc-${i + 1} input[id]`
     );
