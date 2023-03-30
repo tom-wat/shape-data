@@ -216,10 +216,10 @@ function getPoints() {
       const label = input.closest("li").querySelector("label");
       const labelValue = label.textContent.replace(":", "").trim();
       const inputValue = input.value;
-      console.log(input);
-      console.log(label);
-      console.log(labelValue);
-      console.log(inputValue);
+      // console.log(input);
+      // console.log(label);
+      // console.log(labelValue);
+      // console.log(inputValue);
 
       if (!inputValue) {
         continue;
@@ -315,9 +315,35 @@ function save() {
   a.click();
 }
 
-//Enterキーでファイル出力//
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
+//Command+Enterキーでファイル出力//
+
+// document.addEventListener("keydown", function (event) {
+//   if (event.key === "Enter") {
+//     save();
+//   }
+// });
+
+// Create an object to keep track of which keys are currently pressed
+const keysPressed = {};
+
+// Add event listeners for the keydown and keyup events
+document.addEventListener("keydown", (event) => {
+  keysPressed[event.key] = true;
+  // console.log(event.key + "key pressed");
+  handleKeys();
+});
+
+document.addEventListener("keyup", (event) => {
+  keysPressed[event.key] = false;
+  // console.log(event.key + "released");
+  handleKeys();
+});
+
+// Define a function to handle the state of the keys
+function handleKeys() {
+  // Check if the keys you want to control simultaneously are pressed
+  if (keysPressed["Meta"] && keysPressed["Enter"]) {
+    // Do something when all three keys are pressed simultaneously
     save();
   }
-});
+}
