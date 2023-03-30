@@ -321,21 +321,40 @@ function save() {
 let keyCommand = false;
 let keyEnter = false;
 
+function debounce(func, delay, immediate) {
+  let timerId;
+  return function () {
+    const context = this;
+    const args = arguments;
+    const callNow = immediate && !timerId;
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      timerId = null;
+      if (!immediate) {
+        func.apply(context, args);
+      }
+    }, delay);
+    if (callNow) {
+      func.apply(context, args);
+    }
+  };
+}
 // Define your key press handler
 function handleKeyPress() {
   if (keyCommand) {
     if (keyEnter) {
       // Do something when both keys are pressed simultaneously
-      save();
+      debouncedSave();
 
-      // console.log("multiple");
-      // console.log(`keyCommand:${keyCommand}`);
-      // console.log(`keyEnter:${keyEnter}`);
+      console.log("multiple");
+      console.log(`keyCommand:${keyCommand}`);
+      console.log(`keyEnter:${keyEnter}`);
       keyCommand = false;
       keyEnter = false;
     }
   }
 }
+const debouncedSave = debounce(save, 2000, true);
 
 // Add event listeners to track the state of each key
 document.addEventListener("keydown", (event) => {
@@ -345,9 +364,9 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     keyEnter = true;
   }
-  // console.log(event.key);
-  // console.log(`keyCommand:${keyCommand}`);
-  // console.log(`keyEnter:${keyEnter}`);
+  console.log(event.key);
+  console.log(`keyCommand:${keyCommand}`);
+  console.log(`keyEnter:${keyEnter}`);
   handleKeyPress();
 });
 
@@ -360,6 +379,6 @@ document.addEventListener("keyup", (event) => {
     keyCommand = false;
     keyEnter = false;
   }
-  // console.log(`keyCommand:${keyCommand}`);
-  // console.log(`keyEnter:${keyEnter}`);
+  console.log(`keyCommand:${keyCommand}`);
+  console.log(`keyEnter:${keyEnter}`);
 });
