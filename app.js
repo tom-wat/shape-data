@@ -317,33 +317,49 @@ function save() {
 
 //Command+Enterキーでファイル出力//
 
-// document.addEventListener("keydown", function (event) {
-//   if (event.key === "Enter") {
-//     save();
-//   }
-// });
+// Set up an object to track the current state of each key
+let keyCommand = false;
+let keyEnter = false;
 
-// Create an object to keep track of which keys are currently pressed
-const keysPressed = {};
+// Define your key press handler
+function handleKeyPress() {
+  if (keyCommand) {
+    if (keyEnter) {
+      // Do something when both keys are pressed simultaneously
+      save();
 
-// Add event listeners for the keydown and keyup events
+      // console.log("multiple");
+      // console.log(`keyCommand:${keyCommand}`);
+      // console.log(`keyEnter:${keyEnter}`);
+      keyCommand = false;
+      keyEnter = false;
+    }
+  }
+}
+
+// Add event listeners to track the state of each key
 document.addEventListener("keydown", (event) => {
-  keysPressed[event.key] = true;
-  // console.log(event.key + "key pressed");
-  handleKeys();
+  if (event.key === "Meta") {
+    keyCommand = true;
+  }
+  if (event.key === "Enter") {
+    keyEnter = true;
+  }
+  // console.log(event.key);
+  // console.log(`keyCommand:${keyCommand}`);
+  // console.log(`keyEnter:${keyEnter}`);
+  handleKeyPress();
 });
 
 document.addEventListener("keyup", (event) => {
-  keysPressed[event.key] = false;
-  // console.log(event.key + "released");
-  handleKeys();
-});
-
-// Define a function to handle the state of the keys
-function handleKeys() {
-  // Check if the keys you want to control simultaneously are pressed
-  if (keysPressed["Meta"] && keysPressed["Enter"]) {
-    // Do something when all three keys are pressed simultaneously
-    save();
+  if (event.key === "Meta") {
+    keyCommand = false;
+    keyEnter = false;
   }
-}
+  if (event.key === "Enter") {
+    keyCommand = false;
+    keyEnter = false;
+  }
+  // console.log(`keyCommand:${keyCommand}`);
+  // console.log(`keyEnter:${keyEnter}`);
+});
