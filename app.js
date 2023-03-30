@@ -322,11 +322,11 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-//rangeスライダーのタッチイベントを無効
-const rangeInput = document.querySelectorall('input[type="range"]');
+// //rangeスライダーのタッチイベントを無効
+// const rangeInput = document.querySelectorall('input[type="range"]');
 
-rangeInput.forEach((element) => {
-  element.addEventListener("touchstart", function () {
-    this.blur();
-  });
-});
+// rangeInput.forEach((element) => {
+//   element.addEventListener("touchstart", function () {
+//     this.blur();
+//   });
+// });
