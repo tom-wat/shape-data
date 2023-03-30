@@ -87,11 +87,19 @@
             <li>
               <label for="object-position-x-block">position-x-block:</label>
               <input
+                type="range"
+                value="0"
+                min="-20"
+                max="20"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
                 type="number"
                 min="-20"
                 max="20"
                 name="object-position-x-block"
                 id="object-position-x-block"
+                oninput="this.previousElementSibling.value = this.value"
               />
             </li>
             <li>
@@ -99,21 +107,37 @@
                 >position-x-miniblock:</label
               >
               <input
+                type="range"
+                value="0"
+                min="-20"
+                max="20"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
                 type="number"
                 min="-20"
                 max="20"
                 name="object-position-x-miniblock"
                 id="object-position-x-miniblock"
+                oninput="this.previousElementSibling.value = this.value"
               />
             </li>
             <li>
               <label for="object-position-y-block">position-y-block:</label>
+              <input
+                type="range"
+                value="0"
+                min="-20"
+                max="20"
+                oninput="this.nextElementSibling.value = this.value"
+              />
               <input
                 type="number"
                 min="-20"
                 max="20"
                 name="object-position-y-block"
                 id="object-position-y-block"
+                oninput="this.previousElementSibling.value = this.value"
               />
             </li>
             <li>
@@ -121,11 +145,19 @@
                 >position-y-miniblock:</label
               >
               <input
+                type="range"
+                value="0"
+                min="-20"
+                max="20"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
                 type="number"
                 min="-20"
                 max="20"
                 name="object-position-y-miniblock"
                 id="object-position-y-miniblock"
+                oninput="this.previousElementSibling.value = this.value"
               />
             </li>
             <li>
