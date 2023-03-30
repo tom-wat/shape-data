@@ -22,8 +22,14 @@
       button {
         padding: 2px 4px;
       }
-      ul li {
+      li {
         list-style: none;
+        padding-inline-start: 2ch;
+      }
+      #point ul {
+        padding-inline-start: 2ch;
+      }
+      #arc ul {
         padding-inline-start: 2ch;
       }
     </style>
@@ -38,15 +44,8 @@
         <button onclick="save()">Save</button>
         <li>
           <ul id="object">
-            <li>
-              <label for="object-name">name:</label>
-              <input
-                type="text"
-                id="object-name"
-                name="object-name"
-                autofocus
-              />
-            </li>
+            <label for="object-name">name:</label>
+            <input type="text" id="object-name" name="object-name" autofocus />
             <li>
               <label for="object-width">width:</label>
               <input

@@ -168,7 +168,11 @@ const getPointButton = document.querySelector("#get-point");
 getPointButton.addEventListener("click", getPoints);
 
 function getObject() {
-  const inputElements = document.querySelectorAll("#object input[id]");
+  let objectName = document.querySelector("#object-name").value;
+  if (!objectName) {
+    objectName = "object";
+  }
+  const inputElements = document.querySelectorAll("#object li input[id]");
   const object = {};
   for (let i = 0; i < inputElements.length; i++) {
     const input = inputElements[i];
@@ -184,16 +188,16 @@ function getObject() {
   // text = text.replace(/[{}]/g, "");
   // text = text.replace(/,/g, ",\n");
 
-  let text = "object\n";
+  let text = objectName + "\n";
   for (let prop in object) {
-    text += "\t" + prop + ": " + object[prop] + ",\n";
+    text += "\t" + prop + ": " + object[prop] + "\n";
   }
 
   // console.log(inputElements);
   // console.log(object);
   // console.log(text);
   // return text;
-  return text.slice(0, -2);
+  return text;
 }
 
 function getPoints() {
@@ -225,18 +229,18 @@ function getPoints() {
     points[`point${i + 1}`] = { ...point };
   }
 
-  let text = "point\n";
+  let text = "points\n";
   for (let props in points) {
-    text += "\t" + props + ",\n";
+    text += "\t" + props + "\n";
     for (let prop in points[props]) {
-      text += "\t" + "\t" + prop + ": " + points[props][prop] + ",\n";
+      text += "\t" + "\t" + prop + ": " + points[props][prop] + "\n";
     }
   }
 
   // console.log(points);
   // console.log(text);
 
-  return text.slice(0, -2);
+  return text;
 }
 
 function getArcs() {
@@ -263,18 +267,18 @@ function getArcs() {
     arcs[`arc${i + 1}`] = { ...arc };
   }
 
-  let text = "arc\n";
+  let text = "arcs\n";
   for (let props in arcs) {
-    text += "\t" + props + ",\n";
+    text += "\t" + props + "\n";
     for (let prop in arcs[props]) {
-      text += "\t" + "\t" + prop + ": " + arcs[props][prop] + ",\n";
+      text += "\t" + "\t" + prop + ": " + arcs[props][prop] + "\n";
     }
   }
 
   console.log(arcs);
   console.log(text);
 
-  return text.slice(0, -2);
+  return text;
 }
 
 //textを出力する//
@@ -291,14 +295,14 @@ function save() {
       return text;
     }
     if (!pointText) {
-      text = objectText + ",\n" + arcText;
+      text = objectText + "\n" + arcText;
       return text;
     }
     if (!arcText) {
-      text = objectText + ",\n" + pointText;
+      text = objectText + "\n" + pointText;
       return text;
     }
-    text = objectText + ",\n" + pointText + ",\n" + arcText;
+    text = objectText + "\n" + pointText + "\n" + arcText;
     return text;
   };
   const text = gettext();
