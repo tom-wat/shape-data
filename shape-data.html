@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      ul li {
+        list-style: none;
+      }
+    </style>
+    <title>JavaScript Sample</title>
+  </head>
+  <body>
+    <ul id="list">
+      object
+      <button id="get">Console Arcs</button>
+      <button id="get-point">Console Points</button>
+      <button onclick="save()">Save</button>
+      <li>
+        <ul id="object">
+          <li>
+            <label for="object-name">name:</label>
+            <input type="text" id="object-name" name="object-name" autofocus />
+          </li>
+          <li>
+            <label for="object-width">width:</label>
+            <input
+              type="range"
+              value="100"
+              min="0"
+              max="200"
+              oninput="this.nextElementSibling.value = this.value"
+            />
+            <input
+              type="number"
+              value="100"
+              min="0"
+              max="1000"
+              name="object-width"
+              id="object-width"
+              oninput="this.previousElementSibling.value = this.value"
+            />
+          </li>
+          <li>
+            <label for="object-height">height:</label>
+            <input
+              type="range"
+              value="100"
+              min="0"
+              max="200"
+              oninput="this.nextElementSibling.value = this.value"
+            />
+            <input
+              type="number"
+              value="100"
+              min="0"
+              max="1000"
+              name="object-height"
+              id="object-height"
+              oninput="this.previousElementSibling.value = this.value"
+            />
+          </li>
+          <li>
+            <label for="object-position-x-block">position-x-block:</label>
+            <input
+              type="number"
+              min="-20"
+              max="20"
+              name="object-position-x-block"
+              id="object-position-x-block"
+            />
+          </li>
+          <li>
+            <label for="object-position-x-miniblock"
+              >position-x-miniblock:</label
+            >
+            <input
+              type="number"
+              min="-20"
+              max="20"
+              name="object-position-x-miniblock"
+              id="object-position-x-miniblock"
+            />
+          </li>
+          <li>
+            <label for="object-position-y-block">position-y-block:</label>
+            <input
+              type="number"
+              min="-20"
+              max="20"
+              name="object-position-y-block"
+              id="object-position-y-block"
+            />
+          </li>
+          <li>
+            <label for="object-position-y-miniblock"
+              >position-y-miniblock:</label
+            >
+            <input
+              type="number"
+              min="-20"
+              max="20"
+              name="object-position-y-miniblock"
+              id="object-position-y-miniblock"
+            />
+          </li>
+          <li>
+            <label for="object-shape">shape:</label>
+            <input
+              type="text"
+              id="object-shape"
+              name="object-shape"
+              list="object-shape-example"
+            />
+
+            <datalist id="object-shape-example">
+              <option value="circle"></option>
+              <option value="rectangle"></option>
+              <option value="triangle"></option>
+            </datalist>
+          </li>
+        </ul>
+      </li>
+      <li id="point">
+        points
+        <button class="add-point-button">Add</button>
+        <datalist id="point-type-example">
+          <option value="top"></option>
+          <option value="left"></option>
+          <option value="right"></option>
+          <option value="bottom"></option>
+        </datalist>
+      </li>
+      <li id="arc">
+        arcs
+        <button class="add-arc-button">Add</button>
+        <datalist id="arc-type-example">
+          <option value="top"></option>
+          <option value="left"></option>
+          <option value="right"></option>
+          <option value="bottom"></option>
+        </datalist>
+      </li>
+    </ul>
+    <script src="app.js"></script>
+  </body>
+</html>
