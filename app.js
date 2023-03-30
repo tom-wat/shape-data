@@ -325,6 +325,6 @@ document.addEventListener("keydown", function (event) {
 //rangeスライダーのタッチイベントを無効
 const rangeInput = document.querySelector('input[type="range"]');
 
-rangeInput.addEventListener("input", () => {
+rangeInput.addEventListener("touch", () => {
   rangeInput.blur();
 });
