@@ -3,74 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <style>
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        font-family: sans-serif;
-        font-size: clamp(1rem, 0.864rem + 0.68vw, 1.375rem);
-        line-height: 2;
-      }
-      body {
-        /* Light mode styles */
-        background-color: #fff;
-        color: #333;
-      }
-      .container {
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 2rem;
-        display: grid;
-        place-items: center;
-      }
-      button,
-      input,
-      select,
-      textarea {
-        font-family: inherit;
-        font-size: calc(100% - 4px);
-        outline-color: darkblue;
-      }
-
-      button {
-        padding: 2px 4px;
-      }
-      li {
-        list-style: none;
-        padding-inline-start: 2ch;
-      }
-      #point ul {
-        padding-inline-start: 2ch;
-      }
-      #arc ul {
-        padding-inline-start: 2ch;
-      }
-      @media (width < 500px) {
-        input[type="range"] {
-          display: block;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        /* Dark mode styles */
-        body {
-          background-color: #333;
-          color: #fff;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
     <title>Shape Data</title>
   </head>
   <body>
     <div class="container">
       <ul id="list">
         object
-        <button id="get">Console Arcs</button>
-        <button id="get-point">Console Points</button>
+        <button id="get-object" onclick="getObject()">Console Object</button>
+        <button id="get-point" onclick="getPoints()">Console Points</button>
+        <button id="get" onclick="getArcs()">Console Arcs</button>
         <button onclick="save()">Save</button>
         <li>
           <ul id="object">
@@ -96,6 +38,42 @@
               />
             </li>
             <li>
+              <label for="object-width-left">width-left:</label>
+              <input
+                type="range"
+                value="100"
+                min="0"
+                max="200"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
+                type="number"
+                min="0"
+                max="1000"
+                name="object-width-left"
+                id="object-width-left"
+                oninput="this.previousElementSibling.value = this.value"
+              />
+            </li>
+            <li>
+              <label for="object-width-right">width-right:</label>
+              <input
+                type="range"
+                value="100"
+                min="0"
+                max="200"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
+                type="number"
+                min="0"
+                max="1000"
+                name="object-width-right"
+                id="object-width-right"
+                oninput="this.previousElementSibling.value = this.value"
+              />
+            </li>
+            <li>
               <label for="object-height">height:</label>
               <input
                 type="range"
@@ -115,7 +93,51 @@
               />
             </li>
             <li>
-              <label for="object-position-x-block">position-x-block:</label>
+              <label for="object-height-top">height-top:</label>
+              <input
+                type="range"
+                value="100"
+                min="0"
+                max="200"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
+                type="number"
+                min="0"
+                max="1000"
+                name="object-height-top"
+                id="object-height-top"
+                oninput="this.previousElementSibling.value = this.value"
+              />
+            </li>
+            <li>
+              <label for="object-height-bottom">height-bottom:</label>
+              <input
+                type="range"
+                value="100"
+                min="0"
+                max="200"
+                oninput="this.nextElementSibling.value = this.value"
+              />
+              <input
+                type="number"
+                min="0"
+                max="1000"
+                name="object-height-bottom"
+                id="object-height-bottom"
+                oninput="this.previousElementSibling.value = this.value"
+              />
+            </li>
+            <li>
+              <label for="object-reference">reference:</label>
+              <input
+                type="text"
+                id="object-reference"
+                name="object-reference"
+              />
+            </li>
+            <li>
+              <label for="object-position-x-block">position-x_block:</label>
               <input
                 type="range"
                 value="0"
@@ -134,7 +156,7 @@
             </li>
             <li>
               <label for="object-position-x-miniblock"
-                >position-x-miniblock:</label
+                >position-x_miniblock:</label
               >
               <input
                 type="range"
@@ -153,7 +175,7 @@
               />
             </li>
             <li>
-              <label for="object-position-y-block">position-y-block:</label>
+              <label for="object-position-y-block">position-y_block:</label>
               <input
                 type="range"
                 value="0"
@@ -172,7 +194,7 @@
             </li>
             <li>
               <label for="object-position-y-miniblock"
-                >position-y-miniblock:</label
+                >position-y_miniblock:</label
               >
               <input
                 type="range"
@@ -191,6 +213,37 @@
               />
             </li>
             <li>
+              <label for="object-slope">slope:</label>
+              <input
+                type="text"
+                id="object-slope"
+                name="object-slope"
+                list="object-slope-example"
+              />
+
+              <datalist id="object-slope-example">
+                <option value="0"></option>
+                <option value="10"></option>
+                <option value="20"></option>
+                <option value="30"></option>
+                <option value="40"></option>
+                <option value="50"></option>
+                <option value="60"></option>
+                <option value="70"></option>
+                <option value="80"></option>
+                <option value="90"></option>
+                <option value="100"></option>
+                <option value="110"></option>
+                <option value="120"></option>
+                <option value="130"></option>
+                <option value="140"></option>
+                <option value="150"></option>
+                <option value="160"></option>
+                <option value="170"></option>
+                <option value="180"></option>
+              </datalist>
+            </li>
+            <li>
               <label for="object-shape">shape:</label>
               <input
                 type="text"
@@ -205,27 +258,49 @@
                 <option value="triangle"></option>
               </datalist>
             </li>
+            <li>
+              <label for="object-block-division-number"
+                >block-division-number:</label
+              >
+              <input
+                type="text"
+                id="object-block-division-number"
+                name="object-block-division-number"
+                list="object-block-division-number-example"
+              />
+
+              <datalist id="object-block-division-number-example">
+                <option value="4"></option>
+                <option value="8"></option>
+                <option value="16"></option>
+              </datalist>
+            </li>
+            <li>
+              <label for="object-mini-block-division-number"
+                >mini-block-division-number:</label
+              >
+              <input
+                type="text"
+                id="object-mini-block-division-number"
+                name="object-mini-block-division-number"
+                list="object-mini-block-division-number-example"
+              />
+
+              <datalist id="object-mini-block-division-number-example">
+                <option value="4"></option>
+                <option value="8"></option>
+                <option value="16"></option>
+              </datalist>
+            </li>
           </ul>
         </li>
         <li id="point">
           points
           <button class="add-point-button">Add</button>
-          <datalist id="point-type-example">
-            <option value="top"></option>
-            <option value="left"></option>
-            <option value="right"></option>
-            <option value="bottom"></option>
-          </datalist>
         </li>
         <li id="arc">
           arcs
           <button class="add-arc-button">Add</button>
-          <datalist id="arc-type-example">
-            <option value="top"></option>
-            <option value="left"></option>
-            <option value="right"></option>
-            <option value="bottom"></option>
-          </datalist>
         </li>
       </ul>
     </div>
